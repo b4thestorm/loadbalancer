@@ -1,0 +1,6 @@
+python -m pytest          #run tests locally
+
+docker build -t server .  #build the docker image
+
+make test                 #spin up docker containers - run host tests - tear down containers
+
