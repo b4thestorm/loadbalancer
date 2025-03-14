@@ -1,0 +1,9 @@
+hosts:
+  - host: www.mango.com
+    servers:
+      - localhost:8081
+      - localhost:8082
+  - host: www.apple.com
+    servers:
+      - localhost:9081
+      - localhost:9082
