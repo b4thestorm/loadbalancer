@@ -7,6 +7,8 @@ loadbalancer = Flask(__name__)
 MANGO_BACKENDS = ['localhost:8081', 'localhost:8082']
 APPLE_BACKENDS = ['localhost:9081', 'localhost:9082']
 
+
+########HOST BASED ROUTING
 @loadbalancer.route('/')
 def router():
     host_header = request.headers['Host']
@@ -18,3 +20,17 @@ def router():
         return response.content, response.status_code
     else:
         return 'Not Found', 404
+
+
+
+#######PATH BASED ROUTING
+@loadbalancer.route('/mango')
+def mango_path():
+    response = requests.get(f'http://{random.choice(MANGO_BACKENDS)}')
+    return response.content, response.status_code
+
+@loadbalancer.route('/apple')
+def apple_path():
+    response = requests.get(f'http://{random.choice(APPLE_BACKENDS)}')
+    return response.content, response.status_code
+
